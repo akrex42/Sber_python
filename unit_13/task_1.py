@@ -20,8 +20,7 @@ def do_arithmetic_operation(string_args):
         else:
             sign += str(item)
     my_str = ''
-    i = 0
-    while i < len(my_list):
+    for i in range(len(my_list)):
         if not my_list[i].isdigit():
             while i < len(my_list):
                 if my_list[i].isdigit():
@@ -29,7 +28,6 @@ def do_arithmetic_operation(string_args):
                     flag_second_digit = 1
                 i += 1
             break
-        i += 1
     if flag_second_digit:
         second_digit = int(my_str)
         if sign == '+':
