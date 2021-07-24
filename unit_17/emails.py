@@ -8,11 +8,11 @@ def email_gen(list_of_names):
     return emails
 
 
-def fill_emails(file):
+def fill_emails():
     list_of_names_gen = []
     list2 = []
     flag_blank = 0
-    file = open("task_file.txt", 'r+')
+    file = open("file_sample.txt", 'r+')
     for line in file:
         list1 = line.split(',')
         if len(list1[3][1:]) != 7 or not list1[3][1:].isdigit():
@@ -53,6 +53,6 @@ def fill_emails(file):
             list_of_lines[j] = line
         j += 1
     file.close()
-    file = open("task_file.txt", 'w+')
+    file = open("file_sample.txt", 'w+')
     file.writelines(list_of_lines)
     file.close()
