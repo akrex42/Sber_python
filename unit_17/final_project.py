@@ -12,7 +12,17 @@ if re.search(r'PASSWORDS', list_of_lines[0]) is None:
 file.seek(0)
 for line in list_of_lines[1:]:
     list1 = line.split(',')
-    if len(list1[3][1:]) != 7 or not list1[3][1:].isdigit():
+    if len(list1[3][1:]) != 7 or re.search(r'\D', list1[3][1:]) is not None:
+        file1.write(list_of_lines[i])
+        list_of_lines.pop(i)
+        continue
+    if re.match(r'[a-z]', list1[1][1:]) is not None or re.match(r'[a-z]', list1[2][1:]) is not None \
+            or re.match(r'[a-z]', list1[4][1:]) is not None:
+        file1.write(list_of_lines[i])
+        list_of_lines.pop(i)
+        continue
+    if re.search(r'[^a-z\.A-Z\n]', list1[1][1:]) is not None or re.search(r'[^a-z\.A-Z\n]', list1[2][1:]) is not None \
+            or re.search(r'[^a-z\.A-Z\n]', list1[4][1:]) is not None:
         file1.write(list_of_lines[i])
         list_of_lines.pop(i)
         continue
@@ -35,3 +45,4 @@ fill_emails()
 file = open("file_sample.txt", 'r+')
 for line in file:
     print(line)
+
